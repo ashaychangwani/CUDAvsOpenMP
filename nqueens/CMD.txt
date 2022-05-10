@@ -1,0 +1,860 @@
+[ac8832@cuda3 project]$ ./test.sh 
+Cuda Queen
+For t = 2
+Total time taken by the GPU part = 0.130000
+Final count: 0
+
+
+
+For t = 3
+Total time taken by the GPU part = 0.110000
+Final count: 0
+
+
+
+For t = 4
+Total time taken by the GPU part = 0.110000
+Final count: 2
+
+
+
+For t = 5
+Total time taken by the GPU part = 0.110000
+Final count: 10
+
+
+
+For t = 6
+Total time taken by the GPU part = 0.110000
+Final count: 4
+
+
+
+For t = 7
+Total time taken by the GPU part = 0.160000
+Final count: 40
+
+
+
+For t = 8
+Total time taken by the GPU part = 1.550000
+Final count: 92
+
+
+
+For t = 9
+Total time taken by the GPU part = 38.470000
+Final count: 352
+
+
+
+For t = 10
+Total time taken by the GPU part = 191.870000
+Final count: 67
+
+
+
+For t = 11
+Error allocating array a
+
+
+
+For t = 12
+Error allocating array a
+
+
+
+For t = 13
+Error allocating array a
+
+
+
+For t = 14
+Error allocating array a
+
+
+
+For t = 15
+Error allocating array a
+
+
+
+For t = 2, time = 207 milliseconds
+For t = 3, time = 180 milliseconds
+For t = 4, time = 230 milliseconds
+For t = 5, time = 216 milliseconds
+For t = 6, time = 227 milliseconds
+For t = 7, time = 271 milliseconds
+For t = 8, time = 1753 milliseconds
+For t = 9, time = 38974 milliseconds
+^C
+[ac8832@cuda3 project]$ ls
+ac     classical.hpp  cuda-queen.cu  strassen.hpp  test.sh
+a.out  cuda-queen     mm-real.cpp    test.cpp      utils.hpp
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 4
+==192742== NVPROF is profiling process 192742, command: ./cuda-queen 4
+Total time taken by the GPU part = 0.270000
+Final count: 2
+==192742== Profiling application: ./cuda-queen 4
+==192742== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   64.60%  45.662us         3  15.220us  3.9720us  23.649us  [CUDA memcpy HtoH]
+                   35.40%  25.023us         1  25.023us  25.023us  25.023us  isValid(int*, int, int, bool*)
+      API calls:   99.13%  272.79ms         2  136.39ms  6.4920us  272.78ms  cudaHostAlloc
+                    0.31%  859.49us         2  429.74us  426.55us  432.93us  cuDeviceTotalMem
+                    0.24%  656.15us         2  328.08us  12.597us  643.55us  cudaFreeHost
+                    0.22%  604.53us       194  3.1160us     210ns  130.93us  cuDeviceGetAttribute
+                    0.03%  80.404us         3  26.801us  6.2620us  44.806us  cudaMemcpy
+                    0.03%  77.823us         1  77.823us  77.823us  77.823us  cudaLaunchKernel
+                    0.03%  75.127us         2  37.563us  26.668us  48.459us  cuDeviceGetName
+                    0.01%  26.983us         2  13.491us  2.9300us  24.053us  cuDeviceGetPCIBusId
+                    0.01%  14.728us         1  14.728us  14.728us  14.728us  cudaSetDevice
+                    0.00%  1.6780us         3     559ns     351ns     964ns  cuDeviceGetCount
+                    0.00%  1.6430us         4     410ns     210ns     992ns  cuDeviceGet
+                    0.00%     803ns         2     401ns     313ns     490ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 8
+==192785== NVPROF is profiling process 192785, command: ./cuda-queen 8
+Total time taken by the GPU part = 1.940000
+Final count: 92
+==192785== Profiling application: ./cuda-queen 8
+==192785== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   63.70%  63.624ms         3  21.208ms  5.4275ms  38.938ms  [CUDA memcpy HtoH]
+                   36.30%  36.261ms         1  36.261ms  36.261ms  36.261ms  isValid(int*, int, int, bool*)
+      API calls:   73.65%  270.04ms         2  135.02ms  9.0953ms  260.94ms  cudaHostAlloc
+                   17.39%  63.765ms         3  21.255ms  5.4440ms  38.956ms  cudaMemcpy
+                    8.46%  31.035ms         2  15.517ms  3.9722ms  27.062ms  cudaFreeHost
+                    0.25%  911.67us         2  455.84us  451.72us  459.95us  cuDeviceTotalMem
+                    0.17%  627.43us       194  3.2340us     226ns  135.60us  cuDeviceGetAttribute
+                    0.05%  177.73us         1  177.73us  177.73us  177.73us  cudaLaunchKernel
+                    0.02%  66.860us         2  33.430us  27.545us  39.315us  cuDeviceGetName
+                    0.01%  26.873us         2  13.436us  2.7530us  24.120us  cuDeviceGetPCIBusId
+                    0.00%  14.701us         1  14.701us  14.701us  14.701us  cudaSetDevice
+                    0.00%  1.7700us         4     442ns     217ns  1.0460us  cuDeviceGet
+                    0.00%  1.5910us         3     530ns     239ns  1.0030us  cuDeviceGetCount
+                    0.00%     741ns         2     370ns     291ns     450ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 10
+==192808== NVPROF is profiling process 192808, command: ./cuda-queen 10
+Total time taken by the GPU part = 200.740000
+Final count: 67
+==192808== Profiling application: ./cuda-queen 10
+==192808== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   83.42%  20.9813s         3  6.99375s  2.08099s  11.3226s  [CUDA memcpy HtoH]
+                   16.58%  4.17078s         1  4.17078s  4.17078s  4.17078s  isValid(int*, int, int, bool*)
+      API calls:   43.11%  23.5720s         2  11.7860s  4.63430s  18.9377s  cudaHostAlloc
+                   38.37%  20.9815s         3  6.99382s  2.08102s  11.3227s  cudaMemcpy
+                   18.52%  10.1288s         2  5.06442s  1.67199s  8.45684s  cudaFreeHost
+                    0.00%  1.1163ms         1  1.1163ms  1.1163ms  1.1163ms  cudaLaunchKernel
+                    0.00%  943.91us         2  471.96us  460.88us  483.03us  cuDeviceTotalMem
+                    0.00%  623.37us       194  3.2130us     227ns  136.49us  cuDeviceGetAttribute
+                    0.00%  66.032us         2  33.016us  28.212us  37.820us  cuDeviceGetName
+                    0.00%  34.384us         2  17.192us  2.9530us  31.431us  cuDeviceGetPCIBusId
+                    0.00%  14.698us         1  14.698us  14.698us  14.698us  cudaSetDevice
+                    0.00%  1.8560us         3     618ns     345ns  1.0920us  cuDeviceGetCount
+                    0.00%  1.6340us         4     408ns     214ns     967ns  cuDeviceGet
+                    0.00%     822ns         2     411ns     341ns     481ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 2
+==196893== NVPROF is profiling process 196893, command: ./cuda-queen 2
+^[[ATotal time taken by the GPU part = 0.260000
+Final count: 0
+==196893== Profiling application: ./cuda-queen 2
+==196893== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   69.86%  26.631us         3  8.8770us  2.7570us  14.519us  [CUDA memcpy HtoH]
+                   30.14%  11.488us         1  11.488us  11.488us  11.488us  isValid(int*, int, int, bool*)
+      API calls:   99.33%  354.50ms         2  177.25ms  7.1250us  354.49ms  cudaHostAlloc
+                    0.25%  886.16us         2  443.08us  437.58us  448.57us  cuDeviceTotalMem
+                    0.21%  753.49us       194  3.8830us     217ns  173.29us  cuDeviceGetAttribute
+                    0.14%  504.87us         2  252.44us  12.527us  492.34us  cudaFreeHost
+                    0.02%  69.510us         2  34.755us  28.345us  41.165us  cuDeviceGetName
+                    0.02%  64.805us         1  64.805us  64.805us  64.805us  cudaLaunchKernel
+                    0.02%  56.071us         3  18.690us  4.4500us  38.138us  cudaMemcpy
+                    0.01%  27.542us         2  13.771us  2.8120us  24.730us  cuDeviceGetPCIBusId
+                    0.00%  15.411us         1  15.411us  15.411us  15.411us  cudaSetDevice
+                    0.00%  1.8040us         4     451ns     222ns  1.1120us  cuDeviceGet
+                    0.00%  1.5330us         3     511ns     300ns     880ns  cuDeviceGetCount
+                    0.00%     718ns         2     359ns     311ns     407ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 3
+==196919== NVPROF is profiling process 196919, command: ./cuda-queen 3
+^[[ATotal time taken by the GPU part = 0.270000
+Final count: 0
+==196919== Profiling application: ./cuda-queen 3
+==196919== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   71.57%  36.407us         3  12.135us  4.2970us  19.846us  [CUDA memcpy HtoH]
+                   28.43%  14.464us         1  14.464us  14.464us  14.464us  isValid(int*, int, int, bool*)
+      API calls:   99.08%  269.01ms         2  134.51ms  9.6700us  269.00ms  cudaHostAlloc
+                    0.31%  831.10us         2  415.55us  406.69us  424.41us  cuDeviceTotalMem
+                    0.26%  718.42us         2  359.21us  15.083us  703.34us  cudaFreeHost
+                    0.25%  685.10us       194  3.5310us     206ns  192.39us  cuDeviceGetAttribute
+                    0.03%  84.641us         1  84.641us  84.641us  84.641us  cudaLaunchKernel
+                    0.03%  71.360us         3  23.786us  6.4680us  47.006us  cudaMemcpy
+                    0.03%  68.921us         2  34.460us  29.475us  39.446us  cuDeviceGetName
+                    0.01%  26.568us         2  13.284us  2.1720us  24.396us  cuDeviceGetPCIBusId
+                    0.01%  15.165us         1  15.165us  15.165us  15.165us  cudaSetDevice
+                    0.00%  1.5960us         4     399ns     198ns     956ns  cuDeviceGet
+                    0.00%  1.2630us         3     421ns     282ns     662ns  cuDeviceGetCount
+                    0.00%     762ns         2     381ns     336ns     426ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 4
+==197030== NVPROF is profiling process 197030, command: ./cuda-queen 4
+Total time taken by the GPU part = 0.210000
+Final count: 2
+==197030== Profiling application: ./cuda-queen 4
+==197030== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   63.19%  43.008us         3  14.336us  2.8670us  24.764us  [CUDA memcpy HtoH]
+                   36.81%  25.055us         1  25.055us  25.055us  25.055us  isValid(int*, int, int, bool*)
+      API calls:   98.96%  216.66ms         2  108.33ms  5.0200us  216.66ms  cudaHostAlloc
+                    0.42%  917.55us         2  458.78us  453.33us  464.22us  cuDeviceTotalMem
+                    0.29%  645.31us       194  3.3260us     220ns  136.84us  cuDeviceGetAttribute
+                    0.21%  466.62us         2  233.31us  10.541us  456.07us  cudaFreeHost
+                    0.03%  70.540us         3  23.513us  4.3820us  37.125us  cudaMemcpy
+                    0.03%  68.393us         2  34.196us  27.871us  40.522us  cuDeviceGetName
+                    0.03%  62.766us         1  62.766us  62.766us  62.766us  cudaLaunchKernel
+                    0.01%  26.607us         2  13.303us  2.5120us  24.095us  cuDeviceGetPCIBusId
+                    0.01%  15.425us         1  15.425us  15.425us  15.425us  cudaSetDevice
+                    0.00%  2.0080us         3     669ns     319ns  1.3200us  cuDeviceGetCount
+                    0.00%  1.7770us         4     444ns     218ns  1.0710us  cuDeviceGet
+                    0.00%     705ns         2     352ns     259ns     446ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 4
+==197068== NVPROF is profiling process 197068, command: ./cuda-queen 4
+Total time taken by the GPU part = 0.220000
+Final count: 2
+==197068== Profiling application: ./cuda-queen 4
+==197068== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   62.39%  41.987us         3  13.995us  2.9700us  24.879us  [CUDA memcpy HtoH]
+                   37.61%  25.311us         1  25.311us  25.311us  25.311us  isValid(int*, int, int, bool*)
+      API calls:   98.99%  220.22ms         2  110.11ms  5.9680us  220.22ms  cudaHostAlloc
+                    0.41%  903.92us         2  451.96us  450.11us  453.80us  cuDeviceTotalMem
+                    0.28%  623.37us       194  3.2130us     228ns  136.26us  cuDeviceGetAttribute
+                    0.22%  488.40us         2  244.20us  11.002us  477.40us  cudaFreeHost
+                    0.03%  70.379us         3  23.459us  4.4820us  36.885us  cudaMemcpy
+                    0.03%  65.011us         1  65.011us  65.011us  65.011us  cudaLaunchKernel
+                    0.03%  60.619us         2  30.309us  26.702us  33.917us  cuDeviceGetName
+                    0.01%  25.944us         2  12.972us  2.3730us  23.571us  cuDeviceGetPCIBusId
+                    0.01%  14.890us         1  14.890us  14.890us  14.890us  cudaSetDevice
+                    0.00%  1.5940us         4     398ns     224ns     867ns  cuDeviceGet
+                    0.00%  1.3060us         3     435ns     265ns     760ns  cuDeviceGetCount
+                    0.00%     776ns         2     388ns     309ns     467ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 5
+==197083== NVPROF is profiling process 197083, command: ./cuda-queen 5
+Total time taken by the GPU part = 0.210000
+Final count: 10
+==197083== Profiling application: ./cuda-queen 5
+==197083== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   58.40%  67.616us         3  22.538us  4.2080us  46.805us  [CUDA memcpy HtoH]
+                   41.60%  48.159us         1  48.159us  48.159us  48.159us  isValid(int*, int, int, bool*)
+      API calls:   98.92%  218.29ms         2  109.15ms  7.7460us  218.28ms  cudaHostAlloc
+                    0.41%  907.54us         2  453.77us  448.09us  459.45us  cuDeviceTotalMem
+                    0.30%  672.17us       194  3.4640us     227ns  154.36us  cuDeviceGetAttribute
+                    0.23%  513.25us         2  256.63us  12.147us  501.11us  cudaFreeHost
+                    0.04%  96.410us         3  32.136us  5.9350us  51.470us  cudaMemcpy
+                    0.03%  71.845us         2  35.922us  29.214us  42.631us  cuDeviceGetName
+                    0.03%  66.755us         1  66.755us  66.755us  66.755us  cudaLaunchKernel
+                    0.01%  27.833us         2  13.916us  2.9920us  24.841us  cuDeviceGetPCIBusId
+                    0.01%  15.714us         1  15.714us  15.714us  15.714us  cudaSetDevice
+                    0.00%  1.6190us         4     404ns     213ns     867ns  cuDeviceGet
+                    0.00%  1.6100us         3     536ns     226ns  1.0860us  cuDeviceGetCount
+                    0.00%     866ns         2     433ns     371ns     495ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 6
+==197125== NVPROF is profiling process 197125, command: ./cuda-queen 6
+Total time taken by the GPU part = 0.280000
+Final count: 4
+==197125== Profiling application: ./cuda-queen 6
+==197125== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   61.82%  205.67us         3  68.556us  12.235us  139.54us  [CUDA memcpy HtoH]
+                   38.18%  127.01us         1  127.01us  127.01us  127.01us  isValid(int*, int, int, bool*)
+      API calls:   99.02%  275.85ms         2  137.93ms  10.192us  275.84ms  cudaHostAlloc
+                    0.32%  897.55us         2  448.77us  443.95us  453.59us  cuDeviceTotalMem
+                    0.25%  700.67us         2  350.33us  16.841us  683.83us  cudaFreeHost
+                    0.25%  697.82us       194  3.5970us     223ns  168.08us  cuDeviceGetAttribute
+                    0.09%  254.84us         3  84.946us  16.463us  144.79us  cudaMemcpy
+                    0.03%  80.695us         1  80.695us  80.695us  80.695us  cudaLaunchKernel
+                    0.02%  64.530us         2  32.265us  27.328us  37.202us  cuDeviceGetName
+                    0.01%  27.008us         2  13.504us  2.7590us  24.249us  cuDeviceGetPCIBusId
+                    0.01%  15.456us         1  15.456us  15.456us  15.456us  cudaSetDevice
+                    0.00%  1.7780us         3     592ns     255ns  1.1370us  cuDeviceGetCount
+                    0.00%  1.4630us         4     365ns     216ns     771ns  cuDeviceGet
+                    0.00%     740ns         2     370ns     319ns     421ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 7
+==197161== NVPROF is profiling process 197161, command: ./cuda-queen 7
+Total time taken by the GPU part = 0.350000
+Final count: 40
+==197161== Profiling application: ./cuda-queen 7
+==197161== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   63.64%  2.2853ms         3  761.76us  173.80us  1.4266ms  [CUDA memcpy HtoH]
+                   36.36%  1.3058ms         1  1.3058ms  1.3058ms  1.3058ms  isValid(int*, int, int, bool*)
+      API calls:   98.03%  277.61ms         2  138.81ms  1.2576ms  276.36ms  cudaHostAlloc
+                    0.82%  2.3315ms         3  777.18us  179.91us  1.4329ms  cudaMemcpy
+                    0.54%  1.5267ms         2  763.37us  693.79us  832.94us  cudaFreeHost
+                    0.32%  898.88us         2  449.44us  445.30us  453.58us  cuDeviceTotalMem
+                    0.22%  621.86us       194  3.2050us     229ns  134.10us  cuDeviceGetAttribute
+                    0.03%  81.076us         1  81.076us  81.076us  81.076us  cudaLaunchKernel
+                    0.02%  63.678us         2  31.839us  26.777us  36.901us  cuDeviceGetName
+                    0.01%  33.689us         2  16.844us  2.0530us  31.636us  cuDeviceGetPCIBusId
+                    0.00%  13.363us         1  13.363us  13.363us  13.363us  cudaSetDevice
+                    0.00%  1.8000us         3     600ns     284ns  1.1330us  cuDeviceGetCount
+                    0.00%  1.4370us         4     359ns     220ns     758ns  cuDeviceGet
+                    0.00%     715ns         2     357ns     309ns     406ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 8
+==197193== NVPROF is profiling process 197193, command: ./cuda-queen 8
+Total time taken by the GPU part = 1.670000
+Final count: 92
+==197193== Profiling application: ./cuda-queen 8
+==197193== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   61.64%  57.817ms         3  19.272ms  3.8205ms  39.772ms  [CUDA memcpy HtoH]
+                   38.36%  35.974ms         1  35.974ms  35.974ms  35.974ms  isValid(int*, int, int, bool*)
+      API calls:   76.12%  259.38ms         2  129.69ms  8.1302ms  251.25ms  cudaHostAlloc
+                   17.00%  57.942ms         3  19.314ms  3.8496ms  39.785ms  cudaMemcpy
+                    6.38%  21.743ms         2  10.871ms  4.1351ms  17.608ms  cudaFreeHost
+                    0.25%  862.05us         2  431.03us  419.74us  442.32us  cuDeviceTotalMem
+                    0.17%  582.33us       194  3.0010us     208ns  127.25us  cuDeviceGetAttribute
+                    0.04%  139.66us         1  139.66us  139.66us  139.66us  cudaLaunchKernel
+                    0.02%  66.287us         2  33.143us  25.435us  40.852us  cuDeviceGetName
+                    0.01%  28.992us         2  14.496us  3.0760us  25.916us  cuDeviceGetPCIBusId
+                    0.00%  13.088us         1  13.088us  13.088us  13.088us  cudaSetDevice
+                    0.00%  1.9780us         3     659ns     319ns  1.2810us  cuDeviceGetCount
+                    0.00%  1.9100us         4     477ns     245ns     772ns  cuDeviceGet
+                    0.00%     627ns         2     313ns     263ns     364ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 9
+==197252== NVPROF is profiling process 197252, command: ./cuda-queen 9
+Total time taken by the GPU part = 37.230000
+Final count: 352
+==197252== Profiling application: ./cuda-queen 9
+==197252== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   60.16%  1.43831s         3  479.44ms  80.931ms  1.03679s  [CUDA memcpy HtoH]
+                   39.84%  952.49ms         1  952.49ms  952.49ms  952.49ms  isValid(int*, int, int, bool*)
+      API calls:   47.25%  1.43846s         3  479.49ms  80.949ms  1.03680s  cudaMemcpy
+                   37.00%  1.12664s         2  563.32ms  177.97ms  948.66ms  cudaHostAlloc
+                   15.66%  476.84ms         2  238.42ms  84.659ms  392.18ms  cudaFreeHost
+                    0.04%  1.0939ms         1  1.0939ms  1.0939ms  1.0939ms  cudaLaunchKernel
+                    0.03%  903.48us         2  451.74us  451.15us  452.33us  cuDeviceTotalMem
+                    0.02%  632.56us       194  3.2600us     227ns  136.60us  cuDeviceGetAttribute
+                    0.00%  67.827us         2  33.913us  30.557us  37.270us  cuDeviceGetName
+                    0.00%  29.904us         2  14.952us  2.2040us  27.700us  cuDeviceGetPCIBusId
+                    0.00%  14.721us         1  14.721us  14.721us  14.721us  cudaSetDevice
+                    0.00%  1.7150us         4     428ns     245ns     938ns  cuDeviceGet
+                    0.00%  1.4920us         3     497ns     286ns     857ns  cuDeviceGetCount
+                    0.00%     690ns         2     345ns     315ns     375ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ nvprof ./cuda-queen 10
+==197645== NVPROF is profiling process 197645, command: ./cuda-queen 10
+Total time taken by the GPU part = 206.960000
+Final count: 67
+==197645== Profiling application: ./cuda-queen 10
+==197645== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   86.60%  27.0426s         3  9.01421s  2.06821s  16.3340s  [CUDA memcpy HtoH]
+                   13.40%  4.18277s         1  4.18277s  4.18277s  4.18277s  isValid(int*, int, int, bool*)
+      API calls:   44.20%  27.0429s         3  9.01430s  2.06829s  16.3341s  cudaMemcpy
+                   40.77%  24.9437s         2  12.4719s  6.59176s  18.3520s  cudaHostAlloc
+                   15.02%  9.19243s         2  4.59622s  2.07065s  7.12178s  cudaFreeHost
+                    0.00%  1.0544ms         1  1.0544ms  1.0544ms  1.0544ms  cudaLaunchKernel
+                    0.00%  902.29us         2  451.14us  447.36us  454.93us  cuDeviceTotalMem
+                    0.00%  627.55us       194  3.2340us     230ns  135.19us  cuDeviceGetAttribute
+                    0.00%  67.556us         2  33.778us  27.295us  40.261us  cuDeviceGetName
+                    0.00%  26.123us         2  13.061us  2.3720us  23.751us  cuDeviceGetPCIBusId
+                    0.00%  15.133us         1  15.133us  15.133us  15.133us  cudaSetDevice
+                    0.00%  1.7460us         4     436ns     221ns  1.0470us  cuDeviceGet
+                    0.00%  1.6450us         3     548ns     256ns  1.0000us  cuDeviceGetCount
+                    0.00%     994ns         2     497ns     373ns     621ns  cuDeviceGetUuid
+[ac8832@cuda3 project]$ 
+
+
+
+
+
+
+
+
+
+OPENMP::::
+
+stark in …/Ashay/project  | 🕙  09:02 am ➜  nvprof ./openmp-queen.out 4
+==799968== NVPROF is profiling process 799968, command: ./openmp-queen.out 4
+The execution time is 0.121174 sec
+Number of found solutions is 2
+==799968== Profiling application: ./openmp-queen.out 4
+==799968== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   92.12%  36.640us         1  36.640us  36.640us  36.640us  main$_omp_fn$0
+                    4.34%  1.7280us         1  1.7280us  1.7280us  1.7280us  [CUDA memcpy HtoD]
+                    3.54%  1.4080us         1  1.4080us  1.4080us  1.4080us  [CUDA memcpy DtoH]
+      API calls:   76.61%  92.667ms         1  92.667ms  92.667ms  92.667ms  cuCtxCreate
+                   19.38%  23.445ms         1  23.445ms  23.445ms  23.445ms  cuCtxDestroy
+                    1.67%  2.0240ms        23  88.001us  13.330us  976.11us  cuLinkAddData
+                    1.24%  1.4940ms         1  1.4940ms  1.4940ms  1.4940ms  cuModuleLoadData
+                    0.50%  600.66us         1  600.66us  600.66us  600.66us  cuLinkComplete
+                    0.20%  240.74us         2  120.37us  77.451us  163.29us  cuMemAlloc
+                    0.15%  177.05us         2  88.526us  73.021us  104.03us  cuMemFree
+                    0.09%  114.39us         1  114.39us  114.39us  114.39us  cuLaunchKernel
+                    0.06%  76.162us        16  4.7600us     120ns  71.861us  cuDeviceGetAttribute
+                    0.03%  38.440us         1  38.440us  38.440us  38.440us  cuCtxSynchronize
+                    0.03%  32.300us         1  32.300us  32.300us  32.300us  cuLinkCreate
+                    0.01%  15.041us         1  15.041us  15.041us  15.041us  cuMemcpyDtoH
+                    0.01%  11.861us         1  11.861us  11.861us  11.861us  cuMemcpyHtoD
+                    0.01%  10.880us         1  10.880us  10.880us  10.880us  cuDeviceGetName
+                    0.00%  4.8100us         7     687ns     160ns  3.0200us  cuCtxGetDevice
+                    0.00%  4.3100us         1  4.3100us  4.3100us  4.3100us  cuDeviceGetPCIBusId
+                    0.00%  1.8500us         4     462ns     160ns  1.1800us  cuDeviceGetCount
+                    0.00%  1.3000us         1  1.3000us  1.3000us  1.3000us  cuLinkDestroy
+                    0.00%  1.3000us         3     433ns     210ns     680ns  cuMemGetAddressRange
+                    0.00%     830ns         2     415ns     380ns     450ns  cuFuncGetAttribute
+                    0.00%     790ns         1     790ns     790ns     790ns  cuInit
+                    0.00%     750ns         1     750ns     750ns     750ns  cuModuleGetFunction
+                    0.00%     640ns         2     320ns     160ns     480ns  cuDeviceGet
+                    0.00%     580ns         1     580ns     580ns     580ns  cuModuleGetGlobal
+                    0.00%     340ns         1     340ns     340ns     340ns  cuCtxGetCurrent
+                    0.00%     140ns         1     140ns     140ns     140ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 331ms | 🕙  09:02 am ➜  ./compiler.sh 
+
+stark in …/Ashay/project  took 458ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 1
+==800700== NVPROF is profiling process 800700, command: ./openmp-queen 1
+The execution time is 0.132227 sec
+Number of found solutions is 1
+==800700== Profiling application: ./openmp-queen 1
+==800700== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   82.07%  14.209us         1  14.209us  14.209us  14.209us  main$_omp_fn$0
+                    9.61%  1.6640us         1  1.6640us  1.6640us  1.6640us  [CUDA memcpy HtoD]
+                    8.32%  1.4400us         1  1.4400us  1.4400us  1.4400us  [CUDA memcpy DtoH]
+      API calls:   74.93%  95.937ms         1  95.937ms  95.937ms  95.937ms  cuCtxCreate
+                   21.46%  27.482ms         1  27.482ms  27.482ms  27.482ms  cuCtxDestroy
+                    1.57%  2.0127ms        23  87.508us  13.400us  970.21us  cuLinkAddData
+                    1.10%  1.4086ms         1  1.4086ms  1.4086ms  1.4086ms  cuModuleLoadData
+                    0.47%  604.42us         1  604.42us  604.42us  604.42us  cuLinkComplete
+                    0.14%  178.43us         2  89.216us  60.711us  117.72us  cuMemAlloc
+                    0.11%  143.79us         2  71.895us  47.600us  96.191us  cuMemFree
+                    0.07%  93.631us         1  93.631us  93.631us  93.631us  cuLaunchKernel
+                    0.06%  73.251us        16  4.5780us     130ns  68.881us  cuDeviceGetAttribute
+                    0.03%  32.411us         1  32.411us  32.411us  32.411us  cuLinkCreate
+                    0.01%  16.640us         1  16.640us  16.640us  16.640us  cuCtxSynchronize
+                    0.01%  14.261us         1  14.261us  14.261us  14.261us  cuMemcpyDtoH
+                    0.01%  10.480us         1  10.480us  10.480us  10.480us  cuDeviceGetName
+                    0.01%  10.050us         1  10.050us  10.050us  10.050us  cuMemcpyHtoD
+                    0.00%  5.0200us         1  5.0200us  5.0200us  5.0200us  cuDeviceGetPCIBusId
+                    0.00%  2.3800us         7     340ns     140ns     810ns  cuCtxGetDevice
+                    0.00%  2.2500us         4     562ns     220ns  1.3400us  cuDeviceGetCount
+                    0.00%  1.3400us         3     446ns     210ns     780ns  cuMemGetAddressRange
+                    0.00%  1.1500us         1  1.1500us  1.1500us  1.1500us  cuInit
+                    0.00%  1.0900us         1  1.0900us  1.0900us  1.0900us  cuLinkDestroy
+                    0.00%     930ns         2     465ns     230ns     700ns  cuDeviceGet
+                    0.00%     670ns         1     670ns     670ns     670ns  cuModuleGetFunction
+                    0.00%     630ns         1     630ns     630ns     630ns  cuCtxGetCurrent
+                    0.00%     610ns         2     305ns     280ns     330ns  cuFuncGetAttribute
+                    0.00%     510ns         1     510ns     510ns     510ns  cuModuleGetGlobal
+                    0.00%     220ns         1     220ns     220ns     220ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 330ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 2
+==800759== NVPROF is profiling process 800759, command: ./openmp-queen 2
+The execution time is 0.126395 sec
+Number of found solutions is 0
+==800759== Profiling application: ./openmp-queen 2
+==800759== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   84.59%  16.512us         1  16.512us  16.512us  16.512us  main$_omp_fn$0
+                    7.70%  1.5040us         1  1.5040us  1.5040us  1.5040us  [CUDA memcpy DtoH]
+                    7.70%  1.5040us         1  1.5040us  1.5040us  1.5040us  [CUDA memcpy HtoD]
+      API calls:   77.38%  101.07ms         1  101.07ms  101.07ms  101.07ms  cuCtxCreate
+                   19.07%  24.912ms         1  24.912ms  24.912ms  24.912ms  cuCtxDestroy
+                    1.54%  2.0090ms        23  87.348us  12.790us  969.84us  cuLinkAddData
+                    1.04%  1.3622ms         1  1.3622ms  1.3622ms  1.3622ms  cuModuleLoadData
+                    0.47%  610.83us         1  610.83us  610.83us  610.83us  cuLinkComplete
+                    0.15%  201.51us         2  100.76us  45.611us  155.90us  cuMemFree
+                    0.14%  177.14us         2  88.571us  60.041us  117.10us  cuMemAlloc
+                    0.07%  91.641us         1  91.641us  91.641us  91.641us  cuLaunchKernel
+                    0.05%  70.511us        16  4.4060us     130ns  66.051us  cuDeviceGetAttribute
+                    0.03%  33.531us         1  33.531us  33.531us  33.531us  cuLinkCreate
+                    0.01%  18.930us         1  18.930us  18.930us  18.930us  cuCtxSynchronize
+                    0.01%  14.260us         1  14.260us  14.260us  14.260us  cuMemcpyDtoH
+                    0.01%  10.150us         1  10.150us  10.150us  10.150us  cuMemcpyHtoD
+                    0.01%  9.8000us         1  9.8000us  9.8000us  9.8000us  cuDeviceGetName
+                    0.00%  4.5700us         1  4.5700us  4.5700us  4.5700us  cuDeviceGetPCIBusId
+                    0.00%  2.5500us         4     637ns     220ns  1.3200us  cuDeviceGetCount
+                    0.00%  2.1300us         7     304ns     150ns     560ns  cuCtxGetDevice
+                    0.00%  1.1800us         3     393ns     200ns     630ns  cuMemGetAddressRange
+                    0.00%  1.1200us         1  1.1200us  1.1200us  1.1200us  cuInit
+                    0.00%  1.0300us         1  1.0300us  1.0300us  1.0300us  cuLinkDestroy
+                    0.00%  1.0100us         2     505ns     300ns     710ns  cuDeviceGet
+                    0.00%     670ns         1     670ns     670ns     670ns  cuModuleGetFunction
+                    0.00%     650ns         2     325ns     260ns     390ns  cuFuncGetAttribute
+                    0.00%     480ns         1     480ns     480ns     480ns  cuModuleGetGlobal
+                    0.00%     460ns         1     460ns     460ns     460ns  cuCtxGetCurrent
+                    0.00%     210ns         1     210ns     210ns     210ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 331ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 2
+==800828== NVPROF is profiling process 800828, command: ./openmp-queen 2
+The execution time is 0.128938 sec
+Number of found solutions is 0
+==800828== Profiling application: ./openmp-queen 2
+==800828== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   84.34%  15.681us         1  15.681us  15.681us  15.681us  main$_omp_fn$0
+                    7.92%  1.4720us         1  1.4720us  1.4720us  1.4720us  [CUDA memcpy HtoD]
+                    7.74%  1.4400us         1  1.4400us  1.4400us  1.4400us  [CUDA memcpy DtoH]
+      API calls:   77.92%  99.325ms         1  99.325ms  99.325ms  99.325ms  cuCtxCreate
+                   18.42%  23.476ms         1  23.476ms  23.476ms  23.476ms  cuCtxDestroy
+                    1.61%  2.0551ms        23  89.351us  14.270us  967.49us  cuLinkAddData
+                    1.11%  1.4136ms         1  1.4136ms  1.4136ms  1.4136ms  cuModuleLoadData
+                    0.48%  607.31us         1  607.31us  607.31us  607.31us  cuLinkComplete
+                    0.14%  183.38us         2  91.691us  62.621us  120.76us  cuMemAlloc
+                    0.11%  144.63us         2  72.316us  47.731us  96.901us  cuMemFree
+                    0.07%  93.941us         1  93.941us  93.941us  93.941us  cuLaunchKernel
+                    0.06%  73.331us        16  4.5830us     130ns  69.131us  cuDeviceGetAttribute
+                    0.02%  31.570us         1  31.570us  31.570us  31.570us  cuLinkCreate
+                    0.01%  17.750us         1  17.750us  17.750us  17.750us  cuCtxSynchronize
+                    0.01%  14.550us         1  14.550us  14.550us  14.550us  cuMemcpyDtoH
+                    0.01%  9.9200us         1  9.9200us  9.9200us  9.9200us  cuDeviceGetName
+                    0.01%  9.8600us         1  9.8600us  9.8600us  9.8600us  cuMemcpyHtoD
+                    0.00%  4.9800us         7     711ns     150ns  3.5500us  cuCtxGetDevice
+                    0.00%  4.8900us         1  4.8900us  4.8900us  4.8900us  cuDeviceGetPCIBusId
+                    0.00%  2.1200us         4     530ns     240ns  1.1200us  cuDeviceGetCount
+                    0.00%  1.2300us         1  1.2300us  1.2300us  1.2300us  cuInit
+                    0.00%  1.1000us         3     366ns     210ns     540ns  cuMemGetAddressRange
+                    0.00%  1.0600us         1  1.0600us  1.0600us  1.0600us  cuLinkDestroy
+                    0.00%     870ns         2     435ns     230ns     640ns  cuDeviceGet
+                    0.00%     680ns         1     680ns     680ns     680ns  cuModuleGetFunction
+                    0.00%     610ns         2     305ns     270ns     340ns  cuFuncGetAttribute
+                    0.00%     490ns         1     490ns     490ns     490ns  cuModuleGetGlobal
+                    0.00%     460ns         1     460ns     460ns     460ns  cuCtxGetCurrent
+                    0.00%     240ns         1     240ns     240ns     240ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 336ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 4
+==800862== NVPROF is profiling process 800862, command: ./openmp-queen 4
+The execution time is 0.120612 sec
+Number of found solutions is 2
+==800862== Profiling application: ./openmp-queen 4
+==800862== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   92.53%  36.449us         1  36.449us  36.449us  36.449us  main$_omp_fn$0
+                    3.74%  1.4720us         1  1.4720us  1.4720us  1.4720us  [CUDA memcpy HtoD]
+                    3.73%  1.4710us         1  1.4710us  1.4710us  1.4710us  [CUDA memcpy DtoH]
+      API calls:   75.25%  95.054ms         1  95.054ms  95.054ms  95.054ms  cuCtxCreate
+                   20.84%  26.327ms         1  26.327ms  26.327ms  26.327ms  cuCtxDestroy
+                    1.75%  2.2054ms        23  95.889us  15.980us  1.0305ms  cuLinkAddData
+                    1.16%  1.4679ms         1  1.4679ms  1.4679ms  1.4679ms  cuModuleLoadData
+                    0.50%  627.84us         1  627.84us  627.84us  627.84us  cuLinkComplete
+                    0.14%  178.98us         2  89.491us  62.231us  116.75us  cuMemAlloc
+                    0.11%  144.64us         2  72.320us  47.020us  97.621us  cuMemFree
+                    0.08%  94.971us         1  94.971us  94.971us  94.971us  cuLaunchKernel
+                    0.07%  82.601us        16  5.1620us     130ns  78.121us  cuDeviceGetAttribute
+                    0.03%  38.691us         1  38.691us  38.691us  38.691us  cuCtxSynchronize
+                    0.03%  36.590us         1  36.590us  36.590us  36.590us  cuLinkCreate
+                    0.01%  14.620us         1  14.620us  14.620us  14.620us  cuMemcpyDtoH
+                    0.01%  10.561us         1  10.561us  10.561us  10.561us  cuDeviceGetName
+                    0.01%  10.250us         1  10.250us  10.250us  10.250us  cuMemcpyHtoD
+                    0.00%  5.0600us         1  5.0600us  5.0600us  5.0600us  cuDeviceGetPCIBusId
+                    0.00%  2.5000us         4     625ns     200ns  1.4700us  cuDeviceGetCount
+                    0.00%  2.1700us         7     310ns     150ns     610ns  cuCtxGetDevice
+                    0.00%  1.7000us         1  1.7000us  1.7000us  1.7000us  cuLinkDestroy
+                    0.00%  1.1800us         3     393ns     250ns     590ns  cuMemGetAddressRange
+                    0.00%  1.0700us         1  1.0700us  1.0700us  1.0700us  cuInit
+                    0.00%  1.0300us         2     515ns     210ns     820ns  cuDeviceGet
+                    0.00%     730ns         1     730ns     730ns     730ns  cuModuleGetFunction
+                    0.00%     640ns         2     320ns     270ns     370ns  cuFuncGetAttribute
+                    0.00%     510ns         1     510ns     510ns     510ns  cuCtxGetCurrent
+                    0.00%     470ns         1     470ns     470ns     470ns  cuModuleGetGlobal
+                    0.00%     220ns         1     220ns     220ns     220ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 332ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 3
+==800894== NVPROF is profiling process 800894, command: ./openmp-queen 3
+The execution time is 0.127191 sec
+Number of found solutions is 0
+==800894== Profiling application: ./openmp-queen 3
+==800894== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   84.73%  17.759us         1  17.759us  17.759us  17.759us  main$_omp_fn$0
+                    7.63%  1.6000us         1  1.6000us  1.6000us  1.6000us  [CUDA memcpy DtoH]
+                    7.63%  1.6000us         1  1.6000us  1.6000us  1.6000us  [CUDA memcpy HtoD]
+      API calls:   77.12%  93.254ms         1  93.254ms  93.254ms  93.254ms  cuCtxCreate
+                   19.04%  23.029ms         1  23.029ms  23.029ms  23.029ms  cuCtxDestroy
+                    1.70%  2.0539ms        23  89.298us  13.190us  1.0001ms  cuLinkAddData
+                    1.15%  1.3850ms         1  1.3850ms  1.3850ms  1.3850ms  cuModuleLoadData
+                    0.49%  596.79us         1  596.79us  596.79us  596.79us  cuLinkComplete
+                    0.15%  175.74us         2  87.871us  60.561us  115.18us  cuMemAlloc
+                    0.12%  142.04us         2  71.021us  46.361us  95.681us  cuMemFree
+                    0.08%  96.231us         1  96.231us  96.231us  96.231us  cuLaunchKernel
+                    0.06%  75.801us        16  4.7370us     130ns  70.031us  cuDeviceGetAttribute
+                    0.03%  33.190us         1  33.190us  33.190us  33.190us  cuLinkCreate
+                    0.02%  20.090us         1  20.090us  20.090us  20.090us  cuCtxSynchronize
+                    0.01%  14.710us         1  14.710us  14.710us  14.710us  cuMemcpyDtoH
+                    0.01%  10.350us         1  10.350us  10.350us  10.350us  cuMemcpyHtoD
+                    0.01%  10.050us         1  10.050us  10.050us  10.050us  cuDeviceGetName
+                    0.01%  7.0300us         1  7.0300us  7.0300us  7.0300us  cuDeviceGetPCIBusId
+                    0.00%  3.0400us         4     760ns     260ns  1.7000us  cuDeviceGetCount
+                    0.00%  2.1800us         2  1.0900us     310ns  1.8700us  cuDeviceGet
+                    0.00%  1.8500us         7     264ns     150ns     510ns  cuCtxGetDevice
+                    0.00%  1.3300us         1  1.3300us  1.3300us  1.3300us  cuLinkDestroy
+                    0.00%  1.1900us         1  1.1900us  1.1900us  1.1900us  cuInit
+                    0.00%  1.1700us         3     390ns     190ns     630ns  cuMemGetAddressRange
+                    0.00%  1.0700us         1  1.0700us  1.0700us  1.0700us  cuModuleGetFunction
+                    0.00%     670ns         1     670ns     670ns     670ns  cuModuleGetGlobal
+                    0.00%     630ns         2     315ns     260ns     370ns  cuFuncGetAttribute
+                    0.00%     570ns         1     570ns     570ns     570ns  cuCtxGetCurrent
+                    0.00%     240ns         1     240ns     240ns     240ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 333ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 4
+==800940== NVPROF is profiling process 800940, command: ./openmp-queen 4
+The execution time is 0.126107 sec
+Number of found solutions is 2
+==800940== Profiling application: ./openmp-queen 4
+==800940== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   92.22%  36.800us         1  36.800us  36.800us  36.800us  main$_omp_fn$0
+                    3.93%  1.5680us         1  1.5680us  1.5680us  1.5680us  [CUDA memcpy HtoD]
+                    3.85%  1.5350us         1  1.5350us  1.5350us  1.5350us  [CUDA memcpy DtoH]
+      API calls:   77.23%  98.387ms         1  98.387ms  98.387ms  98.387ms  cuCtxCreate
+                   19.10%  24.338ms         1  24.338ms  24.338ms  24.338ms  cuCtxDestroy
+                    1.59%  2.0262ms        23  88.095us  13.540us  973.36us  cuLinkAddData
+                    1.11%  1.4088ms         1  1.4088ms  1.4088ms  1.4088ms  cuModuleLoadData
+                    0.47%  599.04us         1  599.04us  599.04us  599.04us  cuLinkComplete
+                    0.14%  184.55us         2  92.276us  59.331us  125.22us  cuMemAlloc
+                    0.12%  150.30us         2  75.150us  46.140us  104.16us  cuMemFree
+                    0.07%  94.731us         1  94.731us  94.731us  94.731us  cuLaunchKernel
+                    0.06%  75.751us        16  4.7340us     120ns  71.311us  cuDeviceGetAttribute
+                    0.03%  38.931us         1  38.931us  38.931us  38.931us  cuCtxSynchronize
+                    0.03%  33.411us         1  33.411us  33.411us  33.411us  cuLinkCreate
+                    0.01%  14.120us         1  14.120us  14.120us  14.120us  cuMemcpyDtoH
+                    0.01%  10.580us         1  10.580us  10.580us  10.580us  cuMemcpyHtoD
+                    0.01%  10.240us         1  10.240us  10.240us  10.240us  cuDeviceGetName
+                    0.00%  5.3700us         7     767ns     140ns  4.0500us  cuCtxGetDevice
+                    0.00%  5.3200us         1  5.3200us  5.3200us  5.3200us  cuDeviceGetPCIBusId
+                    0.00%  2.7800us         4     695ns     300ns  1.4600us  cuDeviceGetCount
+                    0.00%  1.3500us         1  1.3500us  1.3500us  1.3500us  cuInit
+                    0.00%  1.2600us         2     630ns     310ns     950ns  cuDeviceGet
+                    0.00%  1.1000us         3     366ns     210ns     560ns  cuMemGetAddressRange
+                    0.00%  1.0200us         1  1.0200us  1.0200us  1.0200us  cuLinkDestroy
+                    0.00%     680ns         1     680ns     680ns     680ns  cuModuleGetFunction
+                    0.00%     630ns         2     315ns     300ns     330ns  cuFuncGetAttribute
+                    0.00%     590ns         1     590ns     590ns     590ns  cuCtxGetCurrent
+                    0.00%     490ns         1     490ns     490ns     490ns  cuModuleGetGlobal
+                    0.00%     290ns         1     290ns     290ns     290ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 334ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 5
+==801014== NVPROF is profiling process 801014, command: ./openmp-queen 5
+The execution time is 0.128065 sec
+Number of found solutions is 10
+==801014== Profiling application: ./openmp-queen 5
+==801014== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.12%  362.08us         1  362.08us  362.08us  362.08us  main$_omp_fn$0
+                    0.46%  1.6640us         1  1.6640us  1.6640us  1.6640us  [CUDA memcpy DtoH]
+                    0.42%  1.5360us         1  1.5360us  1.5360us  1.5360us  [CUDA memcpy HtoD]
+      API calls:   76.68%  102.88ms         1  102.88ms  102.88ms  102.88ms  cuCtxCreate
+                   19.52%  26.196ms         1  26.196ms  26.196ms  26.196ms  cuCtxDestroy
+                    1.59%  2.1306ms        23  92.635us  14.660us  986.62us  cuLinkAddData
+                    1.02%  1.3663ms         1  1.3663ms  1.3663ms  1.3663ms  cuModuleLoadData
+                    0.45%  609.97us         1  609.97us  609.97us  609.97us  cuLinkComplete
+                    0.27%  363.92us         1  363.92us  363.92us  363.92us  cuCtxSynchronize
+                    0.14%  187.43us         2  93.716us  61.041us  126.39us  cuMemAlloc
+                    0.13%  172.11us         2  86.056us  73.081us  99.031us  cuMemFree
+                    0.08%  100.67us         1  100.67us  100.67us  100.67us  cuLaunchKernel
+                    0.05%  73.471us        16  4.5910us     130ns  68.751us  cuDeviceGetAttribute
+                    0.03%  33.841us         1  33.841us  33.841us  33.841us  cuLinkCreate
+                    0.01%  14.430us         1  14.430us  14.430us  14.430us  cuMemcpyDtoH
+                    0.01%  11.140us         1  11.140us  11.140us  11.140us  cuMemcpyHtoD
+                    0.01%  9.7800us         1  9.7800us  9.7800us  9.7800us  cuDeviceGetName
+                    0.00%  6.3900us         7     912ns     150ns  4.8200us  cuCtxGetDevice
+                    0.00%  4.9700us         1  4.9700us  4.9700us  4.9700us  cuDeviceGetPCIBusId
+                    0.00%  2.7500us         4     687ns     200ns  1.3400us  cuDeviceGetCount
+                    0.00%  1.2300us         1  1.2300us  1.2300us  1.2300us  cuInit
+                    0.00%  1.1200us         3     373ns     220ns     560ns  cuMemGetAddressRange
+                    0.00%  1.1000us         1  1.1000us  1.1000us  1.1000us  cuLinkDestroy
+                    0.00%  1.0400us         2     520ns     190ns     850ns  cuDeviceGet
+                    0.00%     870ns         2     435ns     330ns     540ns  cuFuncGetAttribute
+                    0.00%     670ns         1     670ns     670ns     670ns  cuModuleGetFunction
+                    0.00%     480ns         1     480ns     480ns     480ns  cuModuleGetGlobal
+                    0.00%     380ns         1     380ns     380ns     380ns  cuCtxGetCurrent
+                    0.00%     190ns         1     190ns     190ns     190ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 348ms | 🕙  09:10 am ➜  nvprof ./openmp-queen 6
+==801061== NVPROF is profiling process 801061, command: ./openmp-queen 6
+The execution time is 0.150693 sec
+Number of found solutions is 4
+==801061== Profiling application: ./openmp-queen 6
+==801061== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.96%  7.0950ms         1  7.0950ms  7.0950ms  7.0950ms  main$_omp_fn$0
+                    0.02%  1.4720us         1  1.4720us  1.4720us  1.4720us  [CUDA memcpy HtoD]
+                    0.02%  1.4080us         1  1.4080us  1.4080us  1.4080us  [CUDA memcpy DtoH]
+      API calls:   74.81%  107.56ms         1  107.56ms  107.56ms  107.56ms  cuCtxCreate
+                   17.06%  24.528ms         1  24.528ms  24.528ms  24.528ms  cuCtxDestroy
+                    4.94%  7.0980ms         1  7.0980ms  7.0980ms  7.0980ms  cuCtxSynchronize
+                    1.38%  1.9895ms        23  86.499us  12.960us  954.61us  cuLinkAddData
+                    0.94%  1.3465ms         1  1.3465ms  1.3465ms  1.3465ms  cuModuleLoadData
+                    0.41%  592.27us         1  592.27us  592.27us  592.27us  cuLinkComplete
+                    0.12%  175.12us         2  87.561us  59.101us  116.02us  cuMemAlloc
+                    0.12%  172.33us         2  86.166us  71.451us  100.88us  cuMemFree
+                    0.09%  126.56us        16  7.9100us     120ns  122.24us  cuDeviceGetAttribute
+                    0.07%  94.292us         1  94.292us  94.292us  94.292us  cuLaunchKernel
+                    0.02%  32.190us         1  32.190us  32.190us  32.190us  cuLinkCreate
+                    0.01%  15.130us         1  15.130us  15.130us  15.130us  cuMemcpyDtoH
+                    0.01%  11.030us         1  11.030us  11.030us  11.030us  cuDeviceGetPCIBusId
+                    0.01%  10.030us         1  10.030us  10.030us  10.030us  cuMemcpyHtoD
+                    0.01%  9.5800us         1  9.5800us  9.5800us  9.5800us  cuDeviceGetName
+                    0.00%  2.0800us         4     520ns     230ns  1.1000us  cuDeviceGetCount
+                    0.00%  2.0600us         7     294ns     150ns     510ns  cuCtxGetDevice
+                    0.00%  1.3100us         1  1.3100us  1.3100us  1.3100us  cuInit
+                    0.00%  1.2100us         3     403ns     270ns     520ns  cuMemGetAddressRange
+                    0.00%  1.0700us         1  1.0700us  1.0700us  1.0700us  cuLinkDestroy
+                    0.00%     990ns         2     495ns     210ns     780ns  cuDeviceGet
+                    0.00%     610ns         1     610ns     610ns     610ns  cuModuleGetFunction
+                    0.00%     590ns         2     295ns     260ns     330ns  cuFuncGetAttribute
+                    0.00%     470ns         1     470ns     470ns     470ns  cuModuleGetGlobal
+                    0.00%     460ns         1     460ns     460ns     460ns  cuCtxGetCurrent
+                    0.00%     220ns         1     220ns     220ns     220ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 350ms | 🕙  09:11 am ➜  nvprof ./openmp-queen 7
+==801123== NVPROF is profiling process 801123, command: ./openmp-queen 7
+The execution time is 0.291235 sec
+Number of found solutions is 40
+==801123== Profiling application: ./openmp-queen 7
+==801123== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  164.15ms         1  164.15ms  164.15ms  164.15ms  main$_omp_fn$0
+                    0.00%  1.4400us         1  1.4400us  1.4400us  1.4400us  [CUDA memcpy HtoD]
+                    0.00%  1.4080us         1  1.4080us  1.4080us  1.4080us  [CUDA memcpy DtoH]
+      API calls:   55.46%  164.16ms         1  164.16ms  164.16ms  164.16ms  cuCtxSynchronize
+                   34.91%  103.31ms         1  103.31ms  103.31ms  103.31ms  cuCtxCreate
+                    8.06%  23.858ms         1  23.858ms  23.858ms  23.858ms  cuCtxDestroy
+                    0.69%  2.0494ms        23  89.103us  14.380us  978.91us  cuLinkAddData
+                    0.47%  1.3819ms         1  1.3819ms  1.3819ms  1.3819ms  cuModuleLoadData
+                    0.20%  589.90us         1  589.90us  589.90us  589.90us  cuLinkComplete
+                    0.07%  193.72us         2  96.861us  96.781us  96.941us  cuMemFree
+                    0.06%  176.20us         2  88.101us  60.371us  115.83us  cuMemAlloc
+                    0.03%  94.061us         1  94.061us  94.061us  94.061us  cuLaunchKernel
+                    0.02%  70.821us        16  4.4260us     130ns  67.071us  cuDeviceGetAttribute
+                    0.01%  32.820us         1  32.820us  32.820us  32.820us  cuLinkCreate
+                    0.01%  20.821us         1  20.821us  20.821us  20.821us  cuMemcpyDtoH
+                    0.00%  10.650us         1  10.650us  10.650us  10.650us  cuMemcpyHtoD
+                    0.00%  10.151us         1  10.151us  10.151us  10.151us  cuDeviceGetName
+                    0.00%  7.1700us         1  7.1700us  7.1700us  7.1700us  cuDeviceGetPCIBusId
+                    0.00%  4.6700us         7     667ns     160ns  3.0500us  cuCtxGetDevice
+                    0.00%  1.7600us         3     586ns     250ns     950ns  cuMemGetAddressRange
+                    0.00%  1.3900us         4     347ns     150ns     760ns  cuDeviceGetCount
+                    0.00%  1.2800us         1  1.2800us  1.2800us  1.2800us  cuLinkDestroy
+                    0.00%     890ns         1     890ns     890ns     890ns  cuInit
+                    0.00%     710ns         1     710ns     710ns     710ns  cuModuleGetFunction
+                    0.00%     660ns         2     330ns     140ns     520ns  cuDeviceGet
+                    0.00%     610ns         2     305ns     260ns     350ns  cuFuncGetAttribute
+                    0.00%     490ns         1     490ns     490ns     490ns  cuModuleGetGlobal
+                    0.00%     340ns         1     340ns     340ns     340ns  cuCtxGetCurrent
+                    0.00%     140ns         1     140ns     140ns     140ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 534ms | 🕙  09:11 am ➜  nvprof ./openmp-queen 8
+==801181== NVPROF is profiling process 801181, command: ./openmp-queen 8
+The execution time is 3.35991 sec
+Number of found solutions is 92
+==801181== Profiling application: ./openmp-queen 8
+==801181== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  3.23270s         1  3.23270s  3.23270s  3.23270s  main$_omp_fn$0
+                    0.00%  1.7280us         1  1.7280us  1.7280us  1.7280us  [CUDA memcpy HtoD]
+                    0.00%  1.2160us         1  1.2160us  1.2160us  1.2160us  [CUDA memcpy DtoH]
+      API calls:   96.15%  3.23271s         1  3.23271s  3.23271s  3.23271s  cuCtxSynchronize
+                    2.98%  100.20ms         1  100.20ms  100.20ms  100.20ms  cuCtxCreate
+                    0.74%  24.757ms         1  24.757ms  24.757ms  24.757ms  cuCtxDestroy
+                    0.06%  2.0113ms        23  87.448us  13.400us  969.27us  cuLinkAddData
+                    0.04%  1.3512ms         1  1.3512ms  1.3512ms  1.3512ms  cuModuleLoadData
+                    0.02%  607.30us         1  607.30us  607.30us  607.30us  cuLinkComplete
+                    0.01%  202.02us         2  101.01us  98.011us  104.01us  cuMemFree
+                    0.01%  183.70us         2  91.851us  61.861us  121.84us  cuMemAlloc
+                    0.00%  95.441us         1  95.441us  95.441us  95.441us  cuLaunchKernel
+                    0.00%  71.991us        16  4.4990us     130ns  67.921us  cuDeviceGetAttribute
+                    0.00%  32.090us         1  32.090us  32.090us  32.090us  cuLinkCreate
+                    0.00%  29.561us         1  29.561us  29.561us  29.561us  cuMemcpyDtoH
+                    0.00%  10.380us         1  10.380us  10.380us  10.380us  cuDeviceGetName
+                    0.00%  10.040us         1  10.040us  10.040us  10.040us  cuMemcpyHtoD
+                    0.00%  4.8400us         1  4.8400us  4.8400us  4.8400us  cuDeviceGetPCIBusId
+                    0.00%  3.1400us         3  1.0460us     280ns  2.3200us  cuMemGetAddressRange
+                    0.00%  2.7100us         7     387ns     180ns     800ns  cuCtxGetDevice
+                    0.00%  1.8800us         4     470ns     220ns     920ns  cuDeviceGetCount
+                    0.00%  1.2100us         1  1.2100us  1.2100us  1.2100us  cuInit
+                    0.00%  1.1300us         2     565ns     210ns     920ns  cuDeviceGet
+                    0.00%  1.0200us         1  1.0200us  1.0200us  1.0200us  cuLinkDestroy
+                    0.00%     660ns         1     660ns     660ns     660ns  cuModuleGetFunction
+                    0.00%     590ns         2     295ns     270ns     320ns  cuFuncGetAttribute
+                    0.00%     460ns         1     460ns     460ns     460ns  cuModuleGetGlobal
+                    0.00%     450ns         1     450ns     450ns     450ns  cuCtxGetCurrent
+                    0.00%     210ns         1     210ns     210ns     210ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 3s | 🕙  09:11 am ➜  nvprof ./openmp-queen 9
+==801257== NVPROF is profiling process 801257, command: ./openmp-queen 9
+The execution time is 92.7993 sec
+Number of found solutions is 352
+==801257== Profiling application: ./openmp-queen 9
+==801257== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  92.6641s         1  92.6641s  92.6641s  92.6641s  main$_omp_fn$0
+                    0.00%  1.8560us         1  1.8560us  1.8560us  1.8560us  [CUDA memcpy DtoH]
+                    0.00%  1.4400us         1  1.4400us  1.4400us  1.4400us  [CUDA memcpy HtoD]
+      API calls:   99.86%  92.6642s         1  92.6642s  92.6642s  92.6642s  cuCtxSynchronize
+                    0.11%  103.94ms         1  103.94ms  103.94ms  103.94ms  cuCtxCreate
+                    0.03%  24.878ms         1  24.878ms  24.878ms  24.878ms  cuCtxDestroy
+                    0.00%  2.0487ms        23  89.075us  15.770us  980.39us  cuLinkAddData
+                    0.00%  1.3893ms         1  1.3893ms  1.3893ms  1.3893ms  cuModuleLoadData
+                    0.00%  600.28us         1  600.28us  600.28us  600.28us  cuLinkComplete
+                    0.00%  204.78us         2  102.39us  101.46us  103.32us  cuMemFree
+                    0.00%  176.37us         2  88.186us  60.901us  115.47us  cuMemAlloc
+                    0.00%  93.061us         1  93.061us  93.061us  93.061us  cuLaunchKernel
+                    0.00%  73.830us        16  4.6140us     130ns  69.520us  cuDeviceGetAttribute
+                    0.00%  32.960us         1  32.960us  32.960us  32.960us  cuLinkCreate
+                    0.00%  30.600us         1  30.600us  30.600us  30.600us  cuMemcpyDtoH
+                    0.00%  10.310us         1  10.310us  10.310us  10.310us  cuMemcpyHtoD
+                    0.00%  9.9910us         1  9.9910us  9.9910us  9.9910us  cuDeviceGetName
+                    0.00%  9.2700us         1  9.2700us  9.2700us  9.2700us  cuDeviceGetPCIBusId
+                    0.00%  5.3700us         7     767ns     190ns  3.2100us  cuCtxGetDevice
+                    0.00%  3.1700us         3  1.0560us     280ns  2.3300us  cuMemGetAddressRange
+                    0.00%  2.2100us         4     552ns     180ns  1.3900us  cuDeviceGetCount
+                    0.00%  1.0400us         1  1.0400us  1.0400us  1.0400us  cuInit
+                    0.00%  1.0000us         1  1.0000us  1.0000us  1.0000us  cuLinkDestroy
+                    0.00%     770ns         2     385ns     190ns     580ns  cuDeviceGet
+                    0.00%     670ns         1     670ns     670ns     670ns  cuModuleGetFunction
+                    0.00%     630ns         2     315ns     300ns     330ns  cuFuncGetAttribute
+                    0.00%     480ns         1     480ns     480ns     480ns  cuModuleGetGlobal
+                    0.00%     400ns         1     400ns     400ns     400ns  cuCtxGetCurrent
+                    0.00%     190ns         1     190ns     190ns     190ns  cuDriverGetVersion
+
+stark in …/Ashay/project  took 1m33s | 🕙  09:13 am ➜  nvprof ./openmp-queen 10
+==801409== NVPROF is profiling process 801409, command: ./openmp-queen 10
+The execution time is 418.337 sec
+Number of found solutions is 67
+==801409== Profiling application: ./openmp-queen 10
+==801409== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  418.217s         1  418.217s  418.217s  418.217s  main$_omp_fn$0
+                    0.00%  1.8880us         1  1.8880us  1.8880us  1.8880us  [CUDA memcpy DtoH]
+                    0.00%  1.4400us         1  1.4400us  1.4400us  1.4400us  [CUDA memcpy HtoD]
+      API calls:   99.97%  418.217s         1  418.217s  418.217s  418.217s  cuCtxSynchronize
+                    0.02%  93.773ms         1  93.773ms  93.773ms  93.773ms  cuCtxCreate
+                    0.01%  23.692ms         1  23.692ms  23.692ms  23.692ms  cuCtxDestroy
+                    0.00%  2.0695ms        23  89.977us  13.641us  965.74us  cuLinkAddData
+                    0.00%  1.3386ms         1  1.3386ms  1.3386ms  1.3386ms  cuModuleLoadData
+                    0.00%  599.99us         1  599.99us  599.99us  599.99us  cuLinkComplete
+                    0.00%  200.55us         2  100.28us  98.861us  101.69us  cuMemFree
+                    0.00%  176.43us         2  88.216us  59.951us  116.48us  cuMemAlloc
+                    0.00%  96.091us         1  96.091us  96.091us  96.091us  cuLaunchKernel
+                    0.00%  74.151us        16  4.6340us     130ns  69.881us  cuDeviceGetAttribute
+                    0.00%  33.281us         1  33.281us  33.281us  33.281us  cuLinkCreate
+                    0.00%  31.020us         1  31.020us  31.020us  31.020us  cuMemcpyDtoH
+                    0.00%  10.060us         1  10.060us  10.060us  10.060us  cuMemcpyHtoD
+                    0.00%  9.9700us         1  9.9700us  9.9700us  9.9700us  cuDeviceGetName
+                    0.00%  4.2400us         1  4.2400us  4.2400us  4.2400us  cuDeviceGetPCIBusId
+                    0.00%  3.1000us         3  1.0330us     300ns  2.2400us  cuMemGetAddressRange
+                    0.00%  2.6300us         7     375ns     190ns     760ns  cuCtxGetDevice
+                    0.00%  2.4200us         4     605ns     230ns  1.0800us  cuDeviceGetCount
+                    0.00%  1.0900us         1  1.0900us  1.0900us  1.0900us  cuInit
+                    0.00%  1.0200us         1  1.0200us  1.0200us  1.0200us  cuLinkDestroy
+                    0.00%     920ns         2     460ns     220ns     700ns  cuDeviceGet
+                    0.00%     720ns         1     720ns     720ns     720ns  cuModuleGetFunction
+                    0.00%     610ns         2     305ns     280ns     330ns  cuFuncGetAttribute
+                    0.00%     490ns         1     490ns     490ns     490ns  cuModuleGetGlobal
+                    0.00%     330ns         1     330ns     330ns     330ns  cuCtxGetCurrent
+                    0.00%     210ns         1     210ns     210ns     210ns  cuDriverGetVersion
